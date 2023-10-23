@@ -62,9 +62,17 @@ var cases = new[]
     new Case()
     {
         Title ="Robbery",
-        AmountInDispute =1500,
+        AmountInDispute =1000,
         CaseType = CaseType.Commercial,
         Client = clients[2],
         Lawyer = lawyers[1]
     }
 };
+foreach (Lawyer lawyer in lawyers)
+{
+    lawyer.Cases = cases.Where(c => c.Lawyer == lawyer).ToList();
+}
+foreach (Client client in clients)
+{
+    client.Cases = cases.Where(c => c.Client == client).ToList();
+}
