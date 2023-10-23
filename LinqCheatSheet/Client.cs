@@ -1,5 +1,6 @@
 ﻿namespace LinqCheatSheet;
-public class Lawyer
+
+public class Client
 {
     public List<Case> Cases { get; set; } = default;
     public string FirstName { get; set; } = default;
