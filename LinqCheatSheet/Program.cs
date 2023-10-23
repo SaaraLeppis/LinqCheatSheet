@@ -37,10 +37,10 @@ var cases = new[]
 {
     new Case()
     {
-        Title ="Car accident", 
-        AmountInDispute =10000, 
-        CaseType = CaseType.Commercial, 
-        Client = clients[0], 
+        Title ="Car accident",
+        AmountInDispute =10000,
+        CaseType = CaseType.Commercial,
+        Client = clients[0],
         Lawyer = lawyers[0]
     },
     new Case()
@@ -68,6 +68,8 @@ var cases = new[]
         Lawyer = lawyers[1]
     }
 };
+
+//Where 
 foreach (Lawyer lawyer in lawyers)
 {
     lawyer.Cases = cases.Where(c => c.Lawyer == lawyer).ToList();
@@ -75,4 +77,42 @@ foreach (Lawyer lawyer in lawyers)
 foreach (Client client in clients)
 {
     client.Cases = cases.Where(c => c.Client == client).ToList();
+}
+//First and Single
+// if we want to return only the first lawyer:
+// var workingFirstExample = lawyers.First();
+// otherwise we need a condition as argument  (here lambda function)
+var workingFirstExample = lawyers.First(l => l.FirstName == "Patty");
+
+try
+{
+    var firstExceptionExample = lawyers.First(l => l.FirstName == "Pat");
+}
+catch (InvalidOperationException ex)
+{
+    Console.WriteLine("Invalid operation exception, cause no matching element found"); 
+}
+
+// FirstOrDefault returns the default value for the specified datatype, if no matching element is found.
+// For classes thats null and for value typre thats the default value. For example for int it is 0. 
+var firstOrDefaultExample = lawyers.FirstOrDefault(l => l.FirstName == "Pat");
+
+// Single works like First, but ensures that only a single element matches the specified condition. 
+var workingSingleExample = lawyers.Single(l => l.FirstName == "Patty");
+try
+{
+    var singleExceptionExample = lawyers.Single(l => l.FirstName == "Pat");
+}
+catch (InvalidOperationException ex)
+{
+    Console.WriteLine("Invalid operation exception, cause no matching element found");
+}
+
+try
+{
+    var singleExceptionExample = lawyers.Single(l => l.LastName.Contains("S"));
+}
+catch (InvalidOperationException ex)
+{
+    Console.WriteLine("Throws invalid operation exception, cause more than one element matches the condition");
 }
