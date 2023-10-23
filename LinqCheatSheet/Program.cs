@@ -116,3 +116,9 @@ catch (InvalidOperationException ex)
 {
     Console.WriteLine("Throws invalid operation exception, cause more than one element matches the condition");
 }
+
+// SingleOrDefault returns the default value for the specific datatype, if no matching element was found. 
+//For classes thats null and for value types thats the default value. For example for int it is 0. 
+// Evertything else works slike Single
+
+var singleOrDefaultExample = lawyers.SingleOrDefault(l => l.FirstName == "Pat"); 
