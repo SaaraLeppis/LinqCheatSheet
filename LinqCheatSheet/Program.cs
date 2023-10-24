@@ -134,3 +134,11 @@ var averageAmountInDispute = cases.Average(c => c.AmountInDispute);
 var maxOfInDispute = cases.Max(c => c.AmountInDispute);
 var minOfInDispute = cases.Min(c => c.AmountInDispute);
 Console.WriteLine($" {sumOfAmountInDispute}, {averageAmountInDispute}, {maxOfInDispute}, {minOfInDispute} ");
+
+// OrderBy 
+//Ascending and Descending  
+var lawyersByAmountInDisputeAsc = lawyers.OrderBy(l => l.Cases.Sum(c => c.AmountInDispute));
+var lawyersByAmountInDisputeDesc = lawyers.OrderByDescending(l => l.Cases.Sum(c => c.AmountInDispute));
+
+Console.WriteLine($" Lawyers by amount *Ascending :{lawyersByAmountInDisputeAsc}," +
+    $"* Descending: {lawyersByAmountInDisputeDesc}");
