@@ -128,3 +128,9 @@ var singleOrDefaultExample = lawyers.SingleOrDefault(l => l.FirstName == "Pat");
 var proBonoLawyers = lawyers.Where(l => l.Cases.Any(c => c.CaseType == CaseType.ProBono));
 var commercialOnlyLawyers = lawyers.Where(l => l.Cases.All(c => c.CaseType == CaseType.Commercial));
 
+// Working with numbers
+var sumOfAmountInDispute = cases.Sum(c => c.AmountInDispute);
+var averageAmountInDispute = cases.Average(c => c.AmountInDispute);
+var maxOfInDispute = cases.Max(c => c.AmountInDispute);
+var minOfInDispute = cases.Min(c => c.AmountInDispute);
+Console.WriteLine($" {sumOfAmountInDispute}, {averageAmountInDispute}, {maxOfInDispute}, {minOfInDispute} ");
