@@ -154,4 +154,16 @@ var casesPerLawyerFlat = lawyers.SelectMany(l => l.Cases);
 var caseTitleofCommercialOnlyLawyers = lawyers
     .Where(l => l.Cases.All(c => c.CaseType == CaseType.Commercial))
     .SelectMany(l => l.Cases)
-    .Select(c => c.Title); 
+    .Select(c => c.Title);
+
+// Challenge 
+// 1. Order lawyers by money in dispute for commercial cases only
+var challenge1 = lawyers
+    .OrderBy(l => l.Cases.Where(c => c.CaseType == CaseType.Commercial).Sum(c => c.AmountInDispute));
+// 2. Select all cases from Clients as an IEnumerable<List<Case>> 
+var challenge2 = clients.Select(c => c.Cases);
+// 3. Select all cases from Clients as a flattened list  
+var challenge3 = clients.SelectMany(c => c.Cases);
+// 4. Select a list of strings containing the following fields comma separated 
+// lawyer.FirstName, lawyer.LastName, client.FirstName, client.LastName 
+var challenge4 = cases.Select(c=> c.Lawyer.FirstName + ", " + c.Lawyer.LastName + ", " + c.Client.FirstName + ", "+ c.Client.LastName);
