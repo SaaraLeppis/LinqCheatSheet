@@ -140,7 +140,7 @@ Console.WriteLine($" {sumOfAmountInDispute}, {averageAmountInDispute}, {maxOfInD
 var lawyersByAmountInDisputeAsc = lawyers.OrderBy(l => l.Cases.Sum(c => c.AmountInDispute));
 var lawyersByAmountInDisputeDesc = lawyers.OrderByDescending(l => l.Cases.Sum(c => c.AmountInDispute));
 
-// tarnsforming 
+// tarnsforming ?
 // Task list of lawyers' first name and last name comma separated 
 // by using select
 // 1st select case titles, use case list and get list of strings out of that
@@ -150,5 +150,8 @@ var casesPerLawyer = lawyers.Select(l => l.Cases);
 // we can flatten this out by SelectMany (will create flattened list) 
 var casesPerLawyerFlat = lawyers.SelectMany(l => l.Cases);
 
-
-Console.ReadLine(); 
+// Fluent - Chaining Linq Queries 
+var caseTitleofCommercialOnlyLawyers = lawyers
+    .Where(l => l.Cases.All(c => c.CaseType == CaseType.Commercial))
+    .SelectMany(l => l.Cases)
+    .Select(c => c.Title); 
