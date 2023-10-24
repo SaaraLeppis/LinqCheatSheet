@@ -71,9 +71,10 @@ var cases = new[]
 
 //Where 
 foreach (Lawyer lawyer in lawyers)
-{
+{  
     lawyer.Cases = cases.Where(c => c.Lawyer == lawyer).ToList();
 }
+
 foreach (Client client in clients)
 {
     client.Cases = cases.Where(c => c.Client == client).ToList();
@@ -82,6 +83,7 @@ foreach (Client client in clients)
 // if we want to return only the first lawyer:
 // var workingFirstExample = lawyers.First();
 // otherwise we need a condition as argument  (here lambda function)
+
 var workingFirstExample = lawyers.First(l => l.FirstName == "Patty");
 
 try
@@ -120,5 +122,9 @@ catch (InvalidOperationException ex)
 // SingleOrDefault returns the default value for the specific datatype, if no matching element was found. 
 //For classes thats null and for value types thats the default value. For example for int it is 0. 
 // Evertything else works slike Single
+var singleOrDefaultExample = lawyers.SingleOrDefault(l => l.FirstName == "Pat");
 
-var singleOrDefaultExample = lawyers.SingleOrDefault(l => l.FirstName == "Pat"); 
+// Any and All 
+var proBonoLawyers = lawyers.Where(l => l.Cases.Any(c => c.CaseType == CaseType.ProBono));
+var commercialOnlyLawyers = lawyers.Where(l => l.Cases.All(c => c.CaseType == CaseType.Commercial));
+
