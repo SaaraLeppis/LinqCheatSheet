@@ -140,5 +140,15 @@ Console.WriteLine($" {sumOfAmountInDispute}, {averageAmountInDispute}, {maxOfInD
 var lawyersByAmountInDisputeAsc = lawyers.OrderBy(l => l.Cases.Sum(c => c.AmountInDispute));
 var lawyersByAmountInDisputeDesc = lawyers.OrderByDescending(l => l.Cases.Sum(c => c.AmountInDispute));
 
-Console.WriteLine($" Lawyers by amount *Ascending :{lawyersByAmountInDisputeAsc}," +
-    $"* Descending: {lawyersByAmountInDisputeDesc}");
+// tarnsforming 
+// Task list of lawyers' first name and last name comma separated 
+// by using select
+// 1st select case titles, use case list and get list of strings out of that
+var listOfCaseTitles = cases.Select(c => c.Title); 
+var lawyerNames = lawyers.Select(l => l.FirstName + ", " + l.LastName);
+var casesPerLawyer = lawyers.Select(l => l.Cases); 
+// we can flatten this out by SelectMany (will create flattened list) 
+var casesPerLawyerFlat = lawyers.SelectMany(l => l.Cases);
+
+
+Console.ReadLine(); 
